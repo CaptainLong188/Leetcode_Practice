@@ -1,12 +1,14 @@
-    def isSubsequence(self, s: str, t: str) -> bool:
+    def pivotIndex(self, nums: List[int]) -> int:
 
-        i, j = 0, 0
+        left_sum, right_sum = 0, sum(nums)
 
-        while(i < len(t) and j < len(s)):
+        for i, num in enumerate(nums):
 
-            if(t[i] == s[j]) :
-                j += 1
+            right_sum -= num
 
-            i += 1 
-
-        return j == len(s)
+            if(right_sum == left_sum) : 
+                return i
+            
+            left_sum += num
+        
+        return -1
